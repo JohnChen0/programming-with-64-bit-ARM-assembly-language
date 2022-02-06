@@ -9,7 +9,13 @@ endif
 
 OBJS = HelloWorld.o
 
+ifdef DEBUG
+DEBUGFLAGS = -g
+else
+DEBUGFLAGS =
+endif
+
 %.o : %.s
-	$(AS) $< -o $@
+	$(AS) $(DEBUGFLAGS) $< -o $@
 HelloWorld: $(OBJS)
 	$(LD) -o HelloWorld $(OBJS)

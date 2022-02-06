@@ -13,12 +13,12 @@
 DownloadCreditCardNumbers:
 // Setup the parameters to print hello world
 // and then call Linux to do it.
-	mov	X0, #1	    // 1 = StdOut
-	ldr	X1, =getcreditcards // string to print
-	mov	X2, #30	    // length of our string
-	mov	X8, #64	    // Linux write system call
-	svc	0 	    // Call linux to output the string	
-	ret
+	MOV	X0, #1	    // 1 = StdOut
+	LDR	X1, =getcreditcards // string to print
+	MOV	X2, #30	    // length of our string
+	MOV	X8, #64	    // linux write system call
+	SVC	0 	    // Call linux to output the string	
+	RET
 
 calltoupper:	
 	STR	LR, [SP, #-16]!	// Put LR on the stack
@@ -42,7 +42,7 @@ _start:
 // and then call Linux to do it.
 	MOV     X0, #0      // Use 0 return code
         MOV     X8, #93     // Service command code 93 terminates
-        SVC     0           // Call Linux to terminate
+        SVC     0           // Call linux to terminate the program
 
 .data
 instr:  .ascii  "This is our Test"	// Correct length string

@@ -26,3 +26,6 @@ upper3: $(UPPER3OBJS)
 
 upper4: $(UPPER4OBJS)
 	ld -o upper4 $(UPPER4OBJS)
+
+clean:
+	rm -f upper upper[2-4] *.o

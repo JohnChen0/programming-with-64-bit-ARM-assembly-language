@@ -10,3 +10,6 @@ upper: upper.c
 
 upperghidra: upperghidra.c
 	gcc -O3 -o upperghidra upperghidra.c
+
+clean:
+	rm -f upper upper.s od.txt upperghidra

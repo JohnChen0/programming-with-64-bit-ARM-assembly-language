@@ -25,3 +25,6 @@ addexamp2: $(AE2OBJS)
 
 codesnippets: $(CSOBJS)
 	ld -o codesnippets $(CSOBJS)
+
+clean:
+	rm -f addexamp1 addexamp2 codesnippets movexamps *.o
