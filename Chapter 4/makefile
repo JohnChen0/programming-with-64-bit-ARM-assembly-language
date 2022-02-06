@@ -17,3 +17,6 @@ printdword: $(OBJS)
 
 codesnippets: $(CSOBJS)
 	ld -o codesnippets $(CSOBJS)
+
+clean:
+	rm -f printdword codesnippets *.o

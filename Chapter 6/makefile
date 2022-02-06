@@ -21,3 +21,6 @@ upper: $(UPPEROBJS)
 
 uppermacro: $(UPPERMACOBJS)
 	ld -o uppermacro $(UPPERMACOBJS)
+
+clean:
+	rm -f codesnippets upper uppermacro *.o

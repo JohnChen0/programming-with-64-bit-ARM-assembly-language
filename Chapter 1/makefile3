@@ -4,3 +4,6 @@ OBJS = HelloWorld.o
 	as $< -o $@
 HelloWorld: $(OBJS)
 	ld -o HelloWorld $(OBJS)
+
+clean:
+	rm -f HelloWorld.o HelloWorld

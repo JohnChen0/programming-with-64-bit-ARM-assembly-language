@@ -17,3 +17,6 @@ codesnippets: $(CSOBJS)
 
 upper: $(UPPEROBJS)
 	ld -o upper $(UPPEROBJS)
+
+clean:
+	rm -f codesnippets upper *.o

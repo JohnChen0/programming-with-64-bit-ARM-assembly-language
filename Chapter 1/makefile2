@@ -2,3 +2,6 @@
 	as $< -o $@
 HelloWorld: HelloWorld.o
 	ld -o HelloWorld HelloWorld.o
+
+clean:
+	rm -f HelloWorld.o HelloWorld

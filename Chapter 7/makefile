@@ -18,3 +18,8 @@ all: upper
 upper: $(UPPEROBJS)
 	ld -o upper $(UPPEROBJS)
 
+upper.txt: upper main.S
+	./upper
+
+clean:
+	rm -f upper *.o upper.txt
