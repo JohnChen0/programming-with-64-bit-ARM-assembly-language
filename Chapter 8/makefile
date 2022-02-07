@@ -16,8 +16,15 @@ all: flash flashmem
 %.o : %.s
 	as $(DEBUGFLGS) $(LSTFLGS) $< -o $@
 
+$(FLASHOBJS): gpiomacros.S fileio.S
+
+$(FLASHMEMOBJS): gpiomem.S fileio.S
+
 flash: $(FLASHOBJS)
 	ld -o flash $(FLASHOBJS)
 
 flashmem: $(FLASHMEMOBJS)
 	ld -o flashmem $(FLASHMEMOBJS)
+
+clean:
+	rm -f flash flashmem *.o
