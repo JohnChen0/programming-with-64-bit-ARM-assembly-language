@@ -29,6 +29,10 @@ loop:
 	SUBS	W19, W19, #1	// decrement loop counter
 	B.NE	loop		// loop if more points
 
+	// Save sum to memory
+	LDR	X0, =runsum
+	STR	S1, [X0]
+
 	// compare running sum to real sum
 	FCMP	S1, S2	
 	// print if the numbers are equal or not
