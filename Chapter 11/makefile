@@ -12,12 +12,13 @@ all: divexamp mulexamp matrixmult
 	as $(DEBUGFLGS) $(LSTFLGS) $< -o $@
 
 divexamp: divexamp.s debug.s
-	gcc -o divexamp divexamp.s
+	gcc $(DEBUGFLGS) -o divexamp divexamp.s
 
 mulexamp: mulexamp.s debug.s
-	gcc -o mulexamp mulexamp.s
+	gcc $(DEBUGFLGS) -o mulexamp mulexamp.s
 
 matrixmult: matrixmult.s
-	gcc -g -o matrixmult matrixmult.s
+	gcc $(DEBUGFLGS) -o matrixmult matrixmult.s
 
-
+clean:
+	rm -f divexamp mulexamp matrixmult
