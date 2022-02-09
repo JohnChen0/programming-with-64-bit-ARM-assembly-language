@@ -20,3 +20,6 @@ upperpie: $(UPPEROBJS)
 
 uppercanary: upper.c
 	gcc -o uppercanary -fstack-protector-all -O3 upper.c
+
+clean:
+	rm -f upper upperpie uppercanary *.o
