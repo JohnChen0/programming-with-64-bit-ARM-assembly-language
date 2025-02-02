@@ -10,7 +10,8 @@ LSTFLGS =
 all: upper
 
 %.o : %.S
-	gcc $(DEBUGFLGS) $(LSTFLGS) -c $< -o $@
+	gcc $(DEBUGFLGS) $(LSTFLGS) -E $< -o $*.s
+	as $(DEBUGFLGS) $(LSTFLGS) $*.s -o $@
 
 %.o : %.s
 	as $(DEBUGFLGS) $(LSTFLGS) $< -o $@
@@ -22,4 +23,4 @@ upper.txt: upper main.S
 	./upper
 
 clean:
-	rm -f upper *.o upper.txt
+	rm -f upper *.o upper.txt main.s

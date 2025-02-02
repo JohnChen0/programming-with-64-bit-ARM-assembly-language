@@ -8,7 +8,11 @@
 // X10 - number of characters read
 //
 
+#if defined(__x86_64__) || defined(__i386__)
+#include <asm-generic/unistd.h>
+#else
 #include <asm/unistd.h>
+#endif
 #include "fileio.S"
 
 .equ	BUFFERLEN, 250

@@ -4,7 +4,11 @@
 // Uses X0, X1, X8.
 // Return code is in X0.
 
+#if defined(__x86_64__) || defined(__i386__)
+#include <asm-generic/unistd.h>
+#else
 #include <asm/unistd.h>
+#endif
 
 .equ	O_RDONLY, 0
 .equ	O_WRONLY, 1
