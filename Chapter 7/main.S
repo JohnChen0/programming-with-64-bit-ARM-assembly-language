@@ -38,13 +38,12 @@ nxtfil: openFile	outFile, O_CREAT+O_WRONLY
 	B		exit
 
 // loop through file until done.
-loop:	readFile	X11, buffer, BUFFERLEN
+loop:	readFile	X11, buffer, #BUFFERLEN
 	MOV		X10, X0	// Keep the length read
-	MOV		X1, #0	// Null terminator for string
 
 	// setup call to toupper and call function
 	LDR		X0, =buffer	// first param for toupper
-	STRB		W1, [X0, X10]	// put null at end of string.
+	STRB		WZR, [X0, X10]	// put null at end of string.
 	LDR		X1, =outBuf
 	BL		toupper		
 

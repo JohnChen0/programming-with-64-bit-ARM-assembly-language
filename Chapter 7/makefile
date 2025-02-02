@@ -9,6 +9,8 @@ LSTFLGS =
 
 all: upper
 
+main.o: fileio.S
+
 %.o : %.S
 	gcc $(DEBUGFLGS) $(LSTFLGS) -E $< -o $*.s
 	as $(DEBUGFLGS) $(LSTFLGS) $*.s -o $@

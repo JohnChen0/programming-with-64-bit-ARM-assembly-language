@@ -27,7 +27,7 @@
 .macro  readFile   fd, buffer, length
         mov         X0, \fd      // file descriptor
         ldr         X1, =\buffer
-        mov         X2, #\length
+        mov         X2, \length
         mov         X8, #__NR_read
         svc         0
 .endm
