@@ -42,10 +42,8 @@ main:
 	printStr "UMNEGL X4=-W2*W3:"
 	printReg 4
 
-	LDR	X2, =A
-	LDR	X2, [X2]
-	LDR	X3, =B
-	LDR	X3, [X3]
+	LDR	X2, =0x7812345678
+	LDR	X3, =0xFABCD12345678901
 	MUL	X4, X2, X3
 	printStr "Inputs:"
 	printReg 2
@@ -63,8 +61,4 @@ main:
 
 	MOV	X0, #0		// return code
 	RET
-
-.data
-A:	.dword		0x7812345678
-B:	.dword		0xFABCD12345678901
 
