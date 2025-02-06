@@ -61,8 +61,7 @@
 	ldr	W2, [X2]	// load the value
         ldr	W1, [X9, X2]    // address of register
 	ldr	X3, =\pin	// address of pin table
-	add	X3, X3, #4	// load amount to shift from table
-	ldr	W3, [X3]	// load value of shift amt
+	ldr	W3, [X3, #4]	// load value of shift amt
 	mov	X0, #0b111	// mask to clear 3 bits
 	lsl	X0, X0, X3	// shift into position
 	bic	X1, X1, X0	// clear the three bits
@@ -76,8 +75,7 @@
 	add	X2, X2, #setregoffset // off to set reg
 	mov	X0, #1		// 1 bit to shift into pos
 	ldr	X3, =\pin	// base of pin info table
-	add	X3, X3, #8	// add offset for shift amt
-	ldr	W3, [X3]        // load shift from table
+	ldr	W3, [X3, #8]    // load shift from table
 	lsl	X0, X0, X3	// do the shift
 	str	W0, [X2]	// write to the register
 .endm
@@ -86,8 +84,7 @@
 	add	X2, X2, #clrregoffset // off set of clr reg
 	mov	X0, #1		// 1 bit to shift into pos
 	ldr	X3, =\pin	// base of pin info table
-	add	X3, X3, #8    // add offset for shift amt
-	ldr	W3, [X3]        // load shift from table
+	ldr	W3, [X3, #8]    // load shift from table
 	lsl	X0, X0, X3	// do the shift
 	str	W0, [X2]	// write to the register
 .endm
@@ -95,15 +92,21 @@
 .data
 timespecsec:   .dword   0
 timespecnano:  .dword   100000000
-//devmem:	       .asciz  "/dev/gpiomem"
+#ifndef DEVMEM
+devmem:	       .asciz  "/dev/gpiomem"
+#else
 devmem:	       .asciz  "/dev/mem"
+#endif
 memOpnErr:     .asciz  "Failed to open /dev/mem\n"
 memOpnsz:      .word  .-memOpnErr 
 memMapErr:     .asciz  "Failed to map memory\n"
 memMapsz:      .word  .-memMapErr 
 	       .align  4 // relign after strings
-//gpioaddr:      .dword   0x0	// mem address of gpio registers
+#ifndef DEVMEM
+gpioaddr:      .dword   0x0	// mem address of gpio registers
+#else
 gpioaddr:      .dword   0xFE200000	// mem address of gpio registers
+#endif
 pin17:	       .word   4   // offset to select register
 	       .word   21  // bit offset in select register
 	       .word   17  // bit offset in set & clr register

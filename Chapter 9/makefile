@@ -24,19 +24,16 @@ libupper.a: $(LIBOBJS)
 uppertst2: uppertst.c libupper.a
 	gcc $(DEBUGFLGS) -o uppertst2 uppertst.c libupper.a
 
-/usr/local/lib/libup.so.1.0: $(LIBOBJS)
+libup.so.1.0: $(LIBOBJS)
 	gcc -shared -Wl,-soname,libup.so.1 -o libup.so.1.0 $(LIBOBJS)
-	sudo mv libup.so.1.0 /usr/local/lib
-	sudo ln -sf /usr/local/lib/libup.so.1.0 /usr/local/lib/libup.so.1
-	sudo ln -sf /usr/local/lib/libup.so.1.0 /usr/local/lib/libup.so
-	sudo ldconfig
+	ln -sf libup.so.1.0 libup.so.1
+	ln -sf libup.so.1.0 libup.so
 
-uppertst3: /usr/local/lib/libup.so.1.0
-	gcc $(DEBUGFLGS) -o uppertst3 uppertst.c -lup
+uppertst3: libup.so.1.0
+	gcc $(DEBUGFLGS) -o uppertst3 uppertst.c libup.so.1.0
 
 uppertst4: uppertst4.c
 	gcc $(DEBUGFLGS) -o uppertst4 uppertst4.c
 
 clean:
-	rm -f addexamp2 uppertst uppertst[2-4] libupper.a *.o
-	sudo rm -f /usr/local/lib/libup.so*
+	rm -f addexamp2 uppertst uppertst[2-4] libupper.a *.o libup.so*

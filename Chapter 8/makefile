@@ -8,10 +8,16 @@ DEBUGFLGS =
 endif
 LSTFLGS =
 
+ifdef DEVMEM
+MEMFLAG = -DDEVMEM
+else
+MEMFLAG =
+endif
+
 all: flash flashmem
 
 %.o : %.S
-	gcc $(DEBUGFLGS) $(LSTFLGS) -c $< -o $@
+	gcc $(DEBUGFLGS) $(LSTFLGS) $(MEMFLAG) -c $< -o $@
 
 %.o : %.s
 	as $(DEBUGFLGS) $(LSTFLGS) $< -o $@

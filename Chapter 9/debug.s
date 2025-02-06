@@ -17,7 +17,6 @@
 	mov	    X2, X\reg	// for the %d
 	mov	    X3, X\reg	// for the %x
 	mov	    X1, #\reg	
-	add	    X1, X1, #'0'	// for %c
         ldr  	    X0, =ptfStr // printf format str
         bl	    printf	// call printf
 	ldp	    X18, LR, [SP], #16
@@ -62,6 +61,6 @@
 .endm
 
 .data
-ptfStr: .asciz	"X%c = %32ld, 0x%016lx\n"
+ptfStr: .asciz	"X%d = %32ld, 0x%016lx\n"
 .align 4
 .text
