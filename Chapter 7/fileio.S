@@ -4,7 +4,11 @@
 // Uses X0, X1, X8.
 // Return code is in X0.
 
+#if defined(__x86_64__) || defined(__i386__)
+#include <asm-generic/unistd.h>
+#else
 #include <asm/unistd.h>
+#endif
 
 .equ	O_RDONLY, 0
 .equ	O_WRONLY, 1
@@ -23,7 +27,7 @@
 .macro  readFile   fd, buffer, length
         mov         X0, \fd      // file descriptor
         ldr         X1, =\buffer
-        mov         X2, #\length
+        mov         X2, \length
         mov         X8, #__NR_read
         svc         0
 .endm
