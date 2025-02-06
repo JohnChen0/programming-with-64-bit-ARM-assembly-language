@@ -61,8 +61,7 @@ dotloop:
 printloop:
 		
 	LDR	X0, =prtstr	// printf format string
-	LDR	W1, [X19], #WDSIZE 	// first element in current row
-	LDR	W2, [X19], #WDSIZE	// second element in current row
+	LDP	W1, W2, [X19], #2*WDSIZE // first two elements in current row
 	LDR	W3, [X19], #WDSIZE	// third element in curent row
 	BL	printf		// Call printf
 	SUBS	W20, W20, #1		// Dec loop counter
