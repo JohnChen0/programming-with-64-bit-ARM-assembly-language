@@ -13,8 +13,7 @@
 
 // 
 distance:	
-	// push all registers to be safe, we don't really
-	// need to push so many.
+	// push LR to be safe, even though we don't need to.
 	STR	LR, [SP, #-16]!
 
 	// load all 4 numbers at once
@@ -27,10 +26,8 @@ distance:
 	FSUB	S5, S3, S1
 	// calc s4 = S4 * S4 (x2-X1)^2
 	FMUL	S4, S4, S4
-	// calc s5 = s5 * s5 (Y2-Y1)^2
-	FMUL	S5, S5, S5
-	// calc S4 = S4 + S5
-	FADD	S4, S4, S5
+	// calc s4 = s4 + s5 * s5 (X2-X1)^2 + (Y2-Y1)^2
+	FMADD	S4, S5, S5, S4
 	// calc sqrt(S4)
 	FSQRT	S4, S4 
 	// move result to X0 to be returned
